@@ -22,16 +22,16 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_CONFIG.name} | Live 1-on-1 Online Quran Classes`,
+    default: 'Learn Quran Online | Online Quran Academy - Qari Sadiq Naeem',
     template: `%s | ${SITE_CONFIG.shortName}`,
   },
   description: SITE_CONFIG.description,
   keywords: [
+    'Learn Quran Online',
+    'Online Quran Academy',
     'Online Quran Classes',
     'Online Quran',
-    'Online Quran Academy',
     'Quran Reading',
-    'Learn Quran Online',
     'Online Quran Tutor',
     'Noorani Qaida for Kids Online',
     'Nazra Quran with Tajweed',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   creator: SITE_CONFIG.name,
   metadataBase: new URL(SITE_CONFIG.url),
   openGraph: {
-    title: `${SITE_CONFIG.name} | Live 1-on-1 Online Quran Classes`,
+    title: 'Learn Quran Online | Online Quran Academy - Qari Sadiq Naeem',
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
