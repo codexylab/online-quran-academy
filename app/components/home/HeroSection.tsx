@@ -25,7 +25,7 @@ export default function HeroSection() {
         setIndex((prev) => (prev + 1) % ROTATING_HEADINGS.length);
         setIsFading(false);
       }, 350);
-    }, 5500);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
