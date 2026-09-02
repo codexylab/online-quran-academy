@@ -10,7 +10,7 @@ export const SITE_CONFIG = {
   title: 'Qari Sadiq Naeem | Online Quran Academy',
   description:
     'Live 1-on-1 online Quran classes for children, ladies, and adults worldwide. Learn Nazra, Hifz, Tajweed, Translation, and Tafseer with 17+ years of experienced guidance.',
-  url: 'https://qarisadiqnaeem.com',
+  url: 'https://onlinequranqs.com',
   
   // Teacher profile
   teacher: {
