@@ -1,21 +1,48 @@
-'use client';
-
-import { useState } from 'react';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import WhatsAppButton from '../components/common/WhatsAppButton';
-import MobileStickyBar from '../components/common/MobileStickyBar';
+import FaqAccordion from '../components/faq/FaqAccordion';
 import { FAQS_DATA } from '../../lib/constants/faqs.data';
 import { SITE_CONFIG } from '../../lib/config/site.config';
 import { WhatsAppService } from '../../lib/services/whatsapp.service';
 
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions (FAQs) | Online Quran Classes & Fees',
+  description:
+    'Common questions about online Quran classes, 1-on-1 Zoom sessions, free trial class, course duration, female teachers, and flexible timings answered by Qari Sadiq Naeem.',
+  keywords: [
+    'Online Quran FAQ',
+    'Online Quran Class Fees',
+    'Learn Quran Online Questions',
+    'Zoom Quran Classes FAQ',
+    'Online Quran Tutor Questions',
+  ],
+};
+
 export default function FaqPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const waUrl = WhatsAppService.getGeneralInquiryUrl();
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQS_DATA.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
 
   return (
     <main className="main-wrapper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Navbar />
 
       <section className="page-hero">
@@ -24,7 +51,7 @@ export default function FaqPage() {
             <Link href="/">Home</Link> <span>/</span> <span>FAQs</span>
           </div>
           <div className="eyebrow">
-            <span>✦</span> HELP & CLARIFICATIONS
+            <span>✦</span> HELP &amp; CLARIFICATIONS
           </div>
           <h1>
             Frequently Asked <em>Questions</em>
@@ -38,32 +65,13 @@ export default function FaqPage() {
 
       <section className="section faq-page-section">
         <div className="container" style={{ maxWidth: '920px' }}>
-          <div className="faq-list">
-            {FAQS_DATA.map((f, i) => (
-              <div className={`faq-page-item ${openIndex === i ? 'open' : ''}`} key={f.id}>
-                <button
-                  type="button"
-                  className="faq-page-q"
-                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                >
-                  <div>
-                    <span className="faq-category-tag">{f.category}</span>
-                    <h3>{f.q}</h3>
-                  </div>
-                  <span className="faq-toggle-icon">{openIndex === i ? '−' : '+'}</span>
-                </button>
-                {openIndex === i && (
-                  <div className="faq-page-a">
-                    <p>{f.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <FaqAccordion items={FAQS_DATA} />
 
           <div className="faq-cta-banner">
             <h3>Still Have Questions?</h3>
-            <p>Speak directly with {SITE_CONFIG.teacher.name} on WhatsApp for personalized guidance and schedule arrangements.</p>
+            <p>
+              Speak directly with {SITE_CONFIG.teacher.name} on WhatsApp for personalized guidance and schedule arrangements.
+            </p>
             <div className="faq-banner-actions">
               <a
                 href={waUrl}

@@ -54,6 +54,7 @@ export default function Footer() {
                 {link.name}
               </Link>
             ))}
+            <Link href="/blog">Blog & Guides</Link>
           </div>
 
           <div>
@@ -67,7 +68,9 @@ export default function Footer() {
 
           <div>
             <b>Special Tracks</b>
-            {SPECIAL_PROGRAMS.map((sp) => (
+            <Link href="/quran-classes-for-kids">Quran for Kids</Link>
+            <Link href="/quran-classes-for-ladies">Quran for Ladies</Link>
+            {SPECIAL_PROGRAMS.slice(2).map((sp) => (
               <Link key={sp.id} href={`/courses#${sp.id}`}>
                 {sp.title}
               </Link>
@@ -76,8 +79,11 @@ export default function Footer() {
 
           <div>
             <b>By Country</b>
-            {COUNTRY_DIRECTORY.slice(0, 6).map((c) => (
-              <Link key={c.id} href="/#by-country">
+            <Link href="/learn-quran-online-uk">Learn Quran UK 🇬🇧</Link>
+            <Link href="/learn-quran-online-uae">Learn Quran UAE 🇦🇪</Link>
+            <Link href="/learn-quran-online-usa">Learn Quran USA 🇺🇸</Link>
+            {COUNTRY_DIRECTORY.slice(2, 5).map((c) => (
+              <Link key={c.id} href="/courses">
                 {c.headline} {c.flag}
               </Link>
             ))}

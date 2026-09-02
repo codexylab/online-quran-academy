@@ -142,6 +142,13 @@ export default function Navbar() {
               FAQs
             </Link>
             <Link
+              href="/blog"
+              className={pathname.startsWith('/blog') ? 'active' : ''}
+              onClick={() => setMenuOpen(false)}
+            >
+              Blog
+            </Link>
+            <Link
               href="/contact"
               className={pathname === '/contact' ? 'active' : ''}
               onClick={() => setMenuOpen(false)}

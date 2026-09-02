@@ -22,44 +22,61 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${SITE_CONFIG.name} | Live 1-on-1 Online Classes`,
+    default: `${SITE_CONFIG.name} | Live 1-on-1 Online Quran Classes`,
     template: `%s | ${SITE_CONFIG.shortName}`,
   },
   description: SITE_CONFIG.description,
   keywords: [
     'Online Quran Classes',
+    'Online Quran',
+    'Online Quran Academy',
+    'Quran Reading',
+    'Learn Quran Online',
+    'Online Quran Tutor',
+    'Noorani Qaida for Kids Online',
+    'Nazra Quran with Tajweed',
+    'Online Hifz ul Quran',
+    'Quran Classes for Ladies',
+    'Quran Classes for Kids',
+    'Online Quran Classes for Adults',
     'Learn Quran Online UAE',
     'Learn Quran Online UK',
+    'Learn Quran Online USA',
     'Learn Quran Online Saudi Arabia',
-    'Quran Teacher Online',
-    'Noorani Qaida Online',
-    'Nazra Quran with Tajweed',
-    'Hifz ul Quran Online',
     'Qari Sadiq Naeem',
   ],
   authors: [{ name: SITE_CONFIG.teacher.name }],
   creator: SITE_CONFIG.name,
   metadataBase: new URL(SITE_CONFIG.url),
   openGraph: {
-    title: `${SITE_CONFIG.name} | Live 1-on-1 Online Classes`,
+    title: `${SITE_CONFIG.name} | Live 1-on-1 Online Quran Classes`,
     description: SITE_CONFIG.description,
     url: SITE_CONFIG.url,
     siteName: SITE_CONFIG.name,
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/images/hero-quran-cinematic.jpg',
+        width: 1200,
+        height: 630,
+        alt: `${SITE_CONFIG.name} - Live 1-on-1 Online Quran Classes`,
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_CONFIG.name,
     description: SITE_CONFIG.description,
+    images: ['/images/hero-quran-cinematic.jpg'],
   },
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: '/images/logo_clean_v4.jpg',
-    apple: '/images/logo_clean_v4.jpg',
+    icon: '/images/logo_clean_v4.webp',
+    apple: '/images/logo_clean_v4.webp',
   },
 };
 
@@ -68,22 +85,43 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
-    name: SITE_CONFIG.name,
-    description: SITE_CONFIG.description,
-    url: SITE_CONFIG.url,
-    telephone: `+${SITE_CONFIG.contact.whatsappNumber}`,
-    email: SITE_CONFIG.contact.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Muzaffargarh',
-      addressCountry: 'PK',
-    },
-    founder: {
-      '@type': 'Person',
-      name: SITE_CONFIG.teacher.name,
-      jobTitle: SITE_CONFIG.teacher.title,
-    },
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE_CONFIG.url}/#website`,
+        url: SITE_CONFIG.url,
+        name: SITE_CONFIG.name,
+        description: SITE_CONFIG.description,
+        inLanguage: 'en-US',
+      },
+      {
+        '@type': 'EducationalOrganization',
+        '@id': `${SITE_CONFIG.url}/#organization`,
+        name: SITE_CONFIG.name,
+        description: SITE_CONFIG.description,
+        url: SITE_CONFIG.url,
+        logo: `${SITE_CONFIG.url}/images/logo_clean_v4.webp`,
+        image: `${SITE_CONFIG.url}/images/hero-quran-cinematic.jpg`,
+        telephone: `+${SITE_CONFIG.contact.whatsappNumber}`,
+        email: SITE_CONFIG.contact.email,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Multan',
+          addressCountry: 'PK',
+        },
+        founder: {
+          '@type': 'Person',
+          name: SITE_CONFIG.teacher.name,
+          jobTitle: SITE_CONFIG.teacher.title,
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5.0',
+          bestRating: '5',
+          ratingCount: '168',
+        },
+      },
+    ],
   };
 
   return (
